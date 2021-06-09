@@ -1,0 +1,88 @@
+#nbelement {
+  color: white;
+  background-color: rgba(224, 150, 122, 0.75);
+  font-size: small;
+  border-radius: 50%;
+  padding: 0px 5px 0px 5px;
+  position: absolute;
+  top: 0;
+  left: 20px;
+}
+.panier-icon {
+  position: relative;
+}
+h1 {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 0px;
+  text-align: center;
+}
+h4 {
+  color: #8e5bfe;
+}
+select {
+  margin-bottom: 16px;
+}
+.card {
+  margin-bottom: 20px;
+  background-color: #f3e9f1;
+}
+.card-title {
+  margin-bottom: 0px;
+}
+.phraseAcrroche {
+  text-align: center;
+  padding-bottom: 15px;
+}
+.card-img-top {
+  height: 180px;
+  object-fit: cover;
+}
+.contenu-card {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+#contenu {
+  min-height: 80vh;
+  height: auto !important;
+  height: 100%;
+  padding-bottom: 60px;
+}
+.imageProduit {
+  object-fit: cover;
+  max-width: 100%;
+}
+.margeAvant {
+  margin-top: 40px;
+}
+#panier {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.ligne-panier {
+  margin-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid black;
+}
+.imagePanier {
+  width: 100%;
+}
+
+.panier_quantite {
+  display: flex;
+  flex-direction: row;
+}
+
+.panier_plus_moins {
+  padding-left: 15px;
+}
+
+footer {
+  margin-bottom: auto;
+  background-color: white;
+}
