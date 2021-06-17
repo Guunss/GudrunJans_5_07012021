@@ -1,16 +1,23 @@
+//lorsque la page est chargée on exécute les méthode afficherProduit() et afficherNbElementPanier()
 window.onload = () => {
   afficherNbElementPanier();
   afficherProduit();
 };
 
+/*
+fonction qui appelle le webservice pour récupérer la liste des produits et les ajoute au DOM
+ */
 function afficherProduit() {
+  //on récupère l'id du produit
   const id = findGetParameter("id");
   fetch("http://localhost:3000/api/teddies/" + id)
     .then((response) => response.json())
     .then((response) => {
+      //on met à jour la phrase de titre
       const phraseNours = document.getElementById("phraseNounours");
       phraseNours.textContent = phraseNours.textContent + " " + response.name;
 
+      //on récupère le conteneur du produit et on construit les éléments HTML du produit
       const article = document.getElementById("article");
       let row = document.createElement("div");
       row.className = "row margeAvant";
@@ -64,6 +71,8 @@ function afficherProduit() {
       }).format(response.price / 100);
       explicationNours.appendChild(prixNours);
 
+      //on crée le bouton ajouter au panier
+      //utilisation de onclock pour gérer le click du bouton : utilisation des méthodes ajouterProduit et afficherNbElementsPanier
       let buttonPanier = document.createElement("button");
       buttonPanier.type = "button";
       buttonPanier.className = "btn btn-secondary btn-block";
@@ -97,13 +106,3 @@ function afficherProduit() {
     });
 }
 
-function afficherNbElementPanier() {
-  let nb = getNbElement();
-  const nbEl = document.getElementById("nbelement");
-  if (nb > 0) {
-    nbEl.style.display = "inline";
-    nbEl.textContent = nb;
-  } else {
-    nbEl.style.display = "none";
-  }
-}

@@ -1,3 +1,8 @@
+/**
+ * 
+ * @param {nom du parametre} parameterName 
+ * @returns la valeur du paramètre 
+ */
 function findGetParameter(parameterName) {
   var result = null,
     tmp = [];
@@ -11,6 +16,9 @@ function findGetParameter(parameterName) {
   return result;
 }
 
+/**
+ * met à jour le nombre d'éléments dans le panier
+ */
 function afficherNbElementPanier() {
   let nb = getNbElement();
   const nbEl = document.getElementById("nbelement");

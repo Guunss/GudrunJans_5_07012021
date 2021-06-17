@@ -86,3 +86,11 @@ footer {
   margin-bottom: auto;
   background-color: white;
 }
+
+a {
+  color: black;
+}
+
+.navbar {
+  background-color: #F3E9F1;
+}

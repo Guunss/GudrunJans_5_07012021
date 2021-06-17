@@ -1,11 +1,17 @@
+//lorsque la page est chargée on exécute les méthode afficherProduit() et afficherNbElementPanier()
 window.onload = () => {
   rechargerPanier();
   afficherNbElementPanier();
 };
 
+/*
+recharge les éléments du panier
+*/
 function rechargerPanier() {
   let panier = localStorage.getItem("panier");
+  //on récupère le conteneur du panier
   const divPanier = document.getElementById("panier");
+  //si le panier n'est pas présent ou vide alors on affiche juste un message avec le panier vide, sinon on construit le panier
   if (panier === null || JSON.parse(panier).length === 0) {
     let textPanierVide = document.createElement("h2");
     textPanierVide.textContent = "Votre panier est vide";
@@ -13,7 +19,9 @@ function rechargerPanier() {
     document.getElementById("formulaire").hidden = true;
   } else {
     panier = JSON.parse(panier);
+    //pour chaque élément du panier
     panier.forEach((element) => {
+      //on crée une ligne avec les différents éléments du panier
       let row = document.createElement("div");
       row.className = "row ligne-panier";
       divPanier.appendChild(row);
@@ -27,7 +35,8 @@ function rechargerPanier() {
       imagePanier.src = element.imageUrl;
       imgPanier.appendChild(imagePanier);
 
-      let nomPanier = document.createElement("div");
+      let nomPanier = document.createElement("a");
+      nomPanier.href = "produit.html?id=" + element.id;
       nomPanier.className = "col-sm-2";
       nomPanier.textContent = element.name;
       row.appendChild(nomPanier);
@@ -44,6 +53,7 @@ function rechargerPanier() {
       divQtePlusMoins.className = "panier_plus_moins";
       quantitePanier.appendChild(divQtePlusMoins);
 
+      //on ajoute des boutons pour ajouter au retirer des produits dans le panier
       let quantitePlus = document.createElement("i");
       quantitePlus.className = "far fa-plus-square";
       quantitePlus.onclick = () => {
@@ -91,16 +101,20 @@ function rechargerPanier() {
     }).format(getPrixTotal() / 100);
     row.appendChild(totalPrixPanier);
   }
+  //on récupère les élements du formulaires
   var form = document.getElementById("formulaire");
   var lastName = document.getElementById("lastName");
   var firstName = document.getElementById("firstName");
   var address = document.getElementById("address");
   var city = document.getElementById("city");
   var email = document.getElementById("email");
+  //on ajoute la gestion de l'evenement on submit du formulaire
   form.addEventListener(
     "submit",
     (event) => {
+      //on supprime de traitement par défaut
       event.preventDefault();
+      //on construit l'objet à transmettre
       let data = {
         contact: {
           lastName: lastName.value,
@@ -111,6 +125,8 @@ function rechargerPanier() {
         },
         products: getIdsCommandes(),
       };
+      //on post la commande
+      
       fetch("http://localhost:3000/api/teddies/order", {
         method: "POST",
         headers: {

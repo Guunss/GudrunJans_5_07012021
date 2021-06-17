@@ -1,20 +1,28 @@
+//lorsque la page est chargée on exécute les méthode afficherProduits() et afficherNbElementPanier()
 window.onload = () => {
   afficherProduits();
   afficherNbElementPanier();
 };
 
+/*
+fonction qui appelle le webservice pour récupérer la liste des produits et les ajoute au DOM
+ */
 function afficherProduits() {
   fetch("http://localhost:3000/api/teddies")
     .then((response) => response.json())
     .then((response) => {
+      //cherche la div articles qui va contenir les articles
       const articles = document.getElementById("articles");
       let row;
+      //on crée une nouvelle row tous les trois produits
       response.forEach((nounours, index) => {
         if (index % 3 === 0) {
           row = document.createElement("div");
           row.className = "row";
           articles.appendChild(row);
         }
+
+        //on crée la div qui contient le produit
         let divNounours = document.createElement("div");
         divNounours.className = "col-lg-4";
         row.appendChild(divNounours);
@@ -54,6 +62,7 @@ function afficherProduits() {
         cardTitre.appendChild(prixNounours);
       });
     })
+    //en cas d'erreur on log une information dans la console
     .catch((error) => {
       console.log("Une erreur lors de la récupération: " + JSON.stringify(error))
     });
