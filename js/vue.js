@@ -64,6 +64,8 @@ function afficherProduits() {
     })
     //en cas d'erreur on log une information dans la console
     .catch((error) => {
-      console.log("Une erreur lors de la récupération: " + JSON.stringify(error))
+      console.log(
+        "Une erreur lors de la récupération: " + JSON.stringify(error)
+      );
     });
 }

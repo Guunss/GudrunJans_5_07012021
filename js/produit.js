@@ -101,8 +101,12 @@ function afficherProduit() {
         alerteBouton.innerHTML = "&times;";
         alerteDiv.appendChild(alerteBouton);
         document.getElementById("message").appendChild(alerteDiv);
+
+        setTimeout(() => {
+          const divMessage = document.getElementById("message");
+          divMessage.removeChild(divMessage.firstChild);
+        }, 3.0 * 1000);
       };
       explicationNours.appendChild(buttonPanier);
     });
 }
-

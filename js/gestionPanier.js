@@ -1,6 +1,6 @@
 /**
  * ajout le produit dans le panier du localstorage
- * @param {le produit} produit 
+ * @param {le produit} produit
  */
 function ajouterProduit(produit) {
   let panier = localStorage.getItem("panier");
@@ -24,7 +24,7 @@ function ajouterProduit(produit) {
 
 /**
  * diminue la qté de produit de 1. Le supprimer si qte est 1
- * @param {id du produit a diminué} id 
+ * @param {id du produit a diminué} id
  */
 function enleverProduit(id) {
   let panier = localStorage.getItem("panier");
@@ -43,7 +43,7 @@ function enleverProduit(id) {
 }
 
 /**
- * 
+ *
  * @returns la liste de ids des produits du panier (1 par qté commandé)
  */
 function getIdsCommandes() {
@@ -70,7 +70,7 @@ function removePanier() {
 }
 
 /**
- * 
+ *
  * @returns le prix total de la commande
  */
 function getPrixTotal() {
@@ -88,7 +88,7 @@ function getPrixTotal() {
 }
 
 /**
- * 
+ *
  * @returns le nombre d'éléments dans le panier
  */
 function getNbElement() {

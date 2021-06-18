@@ -1,7 +1,7 @@
 /**
- * 
- * @param {nom du parametre} parameterName 
- * @returns la valeur du paramètre 
+ *
+ * @param {nom du parametre} parameterName
+ * @returns la valeur du paramètre
  */
 function findGetParameter(parameterName) {
   var result = null,
