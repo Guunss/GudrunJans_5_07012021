@@ -101,51 +101,55 @@ function rechargerPanier() {
     }).format(getPrixTotal() / 100);
     row.appendChild(totalPrixPanier);
   }
-  //on récupère les élements du formulaires
   var form = document.getElementById("formulaire");
-  var lastName = document.getElementById("lastName");
-  var firstName = document.getElementById("firstName");
-  var address = document.getElementById("address");
-  var city = document.getElementById("city");
-  var email = document.getElementById("email");
   //on ajoute la gestion de l'evenement on submit du formulaire
   form.addEventListener(
     "submit",
     (event) => {
       //on supprime de traitement par défaut
       event.preventDefault();
-      //on construit l'objet à transmettre
-      let data = {
-        contact: {
-          lastName: lastName.value,
-          firstName: firstName.value,
-          address: address.value,
-          city: city.value,
-          email: email.value,
-        },
-        products: getIdsCommandes(),
-      };
-      //on post la commande
-
-      fetch("http://localhost:3000/api/teddies/order", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          removePanier();
-          window.location.href = "/confirmation.html?order=" + data.orderId;
-        })
-        .catch((error) => {
-          console.log("erreur lors de envoi de la commande : " + error);
-        });
+      commander();
     },
     false
   );
+}
+
+function commander() {
+  //on récupère les élements du formulaires
+  var lastName = document.getElementById("lastName");
+  var firstName = document.getElementById("firstName");
+  var address = document.getElementById("address");
+  var city = document.getElementById("city");
+  var email = document.getElementById("email");
+  //on construit l'objet à transmettre
+  let data = {
+    contact: {
+      lastName: lastName.value,
+      firstName: firstName.value,
+      address: address.value,
+      city: city.value,
+      email: email.value,
+    },
+    products: getIdsCommandes(),
+  };
+  //on post la commande
+
+  fetch("http://localhost:3000/api/teddies/order", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      removePanier();
+      window.location.href = "/confirmation.html?order=" + data.orderId;
+    })
+    .catch((error) => {
+      console.log("erreur lors de envoi de la commande : " + error);
+    });
 }
